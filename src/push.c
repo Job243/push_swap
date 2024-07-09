@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmafueni <jmafueni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 14:16:01 by jmafueni          #+#    #+#             */
-/*   Updated: 2024/04/24 15:47:54 by jmafueni         ###   ########.fr       */
+/*   Created: 2024/06/03 15:53:47 by jmafueni          #+#    #+#             */
+/*   Updated: 2024/06/21 13:58:20 by jmafueni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-#include <stdio.h>
-#include <stdlib.h>
-# define  ERR_MALLOC -3
-# define SUCCESS 100
+#include "push_swap.h"
 
-
-
-
-typedef struct s_list
+void	push_param(t_list **src, t_list **dest)
 {
-	int value;
-	struct s_list *next;
+	t_list	*tmp;
 
-} t_list;
+	if (*src == NULL)
+		return ;
+	tmp = (*src)->next;
+	(*src)->next = *dest;
+	*dest = *src;
+	*src = tmp;
+}
 
+void	do_pa(t_list **a, t_list **b)
+{
+	if (*b == NULL)
+		return ;
+	push_param(b, a);
+	ft_putstr("pa\n");
+}
 
-#endif
+void	do_pb(t_list **a, t_list **b)
+{
+	if (*a == NULL)
+		return ;
+	push_param(a, b);
+	ft_putstr("pb\n");
+}
